@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/receipt.css') }}">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+    <div class="invoice-box">
+    <div class="page-content container">
+        <div class="page-header text-blue-d2">
+            <h1 class="page-title text-secondary-d1">
+                Invoice
+                <small class="page-info">
+                    ID: {{order.id}}  
+                </small>
+            </br>
+            </br>
+                Date: {{order.order_date.strftime('%Y-%m-%d')}}
+            </h1>
+        </div>
+    
+        <div>
+            <div class="row mt-4">
+                <div class="col-12 col-lg-10 offset-lg-1">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="text-center text-150">
+                            
+                                <span class="text-default-d3"> 
+                                    <img src="/static/images/Bookstorelogo.png" alt="Unable to display image" style="width:100%; max-width:300px; height: auto; display: block; 
+                                    margin-left: auto;
+                                    margin-right: auto;">
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- .row -->
+    
+                    <hr class="row brc-default-l1 mx-n1 mb-4" />
+    
+                    <div class="row">
+
+                        <tr class="information">
+                            <td colspan="2">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <div class="col-sm-6">
+                                                <div>
+                                                    <span class="text-sm text-grey-m2 align-middle">From:</span>
+                                                </div>
+                                                <div class="text-grey-m2">
+                                                    <div class="my-1">
+                                                        Online Booking Store Warehouse 
+                                                    </div>
+                                                    <div class="my-1">
+                                                        124 Middle Street, <br>
+                                                         book book
+                                                    </div>
+                                                    <div class="my-1"><b class="text-600">Contact At:</b> </div>
+                                                    <div>123-234-7777</div>
+                                                </div>
+                                            </div>
+
+                                        </td>
+                                        
+                                        <td>
+                                            <div class="col-sm-6" style="margin-left: 400px;">
+                                                <div>
+                                                    <span class="text-sm text-grey-m2 align-middle">To:  </span>
+                                                    <span class="text-600 text-110 text-blue align-middle">{{order.buyer.first_name}} {{order.buyer.last_name}}</span>  
+                                                </div>
+                                                <div class="text-grey-m2">
+                                                    <div class="my-1">
+                                                        {{order.buyer.email}}
+                                                    </div>
+                                                    <div class="my-1">
+                                                        {{order.buyer.address}} 
+                                                    </div>
+                                                    <div class="my-1"><b class="text-600"> Tel: {{order.buyer.phone}} </b> </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+
+                    </div>
+                    </br>
+                    
+                    <div class="mt-4">
+                        <div class="row text-600 text-white bgc-default-tp1 py-25" style="height: 15px;">
+                            <div class="d-none d-sm-block col-1" style="position: relative; top: 0px; margin-left: 5px">Book Name</div>
+                                <div class="d-none d-sm-block col-1" style="margin-left: 755px; position: relative; top: -28px;">Price</div>
+                            
+                            
+                        </div>
+
+    
+                        <div class="row mb-2 mb-sm-0 py-25 bgc-default-l4">
+                            <div class="row mb-2 mb-sm-0 py-25">
+                                <div class="d-none d-sm-block col-1">
+
+                                    {% for b in orderbook %}
+                                    <tr class="item">
+                                        <td>
+                                            {{ b.orderbook.title }}
+                                        </td>
+                            
+                                    <div style="position: relative; margin-left: 750px; top: -30px;">
+                                        <td>
+                                ${{ b.orderbook.price }}
+                            </td>
+
+                        </div> 
+                        </tr>
+                        {% endfor %}
+
+                                </div>
+                                
+                            </div>
+
+                            <div class="Subtotal">
+
+                                    <td></td>
+                                    
+                                    <td>
+                                       Subtotal: ${{ order.amount }}
+                                    </td>
+                                </tr>
+
+
+                            </div>
+    
+                        </div>
+    
+                        <div class="row border-b-2 brc-default-l2"></div>
+
+                        <div class="row mt-3">
+
+                            <div class="row text-600 text-white bgc-default-tp1 py-25" style="height: 15px;">
+                                <div class="d-none d-sm-block col-1" style="position: relative; top: 0px; margin-left: 5px">Payment Method</div>
+                                    <div class="d-none d-sm-block col-1" style="margin-left: 700px; position: relative; top: -28px;">Amount Due</div>
+                                  
+                            </div>
+
+                            <div class="row mb-2 mb-sm-0 py-25">
+                                <div class="d-none d-sm-block col-1">Cash On Delivery</div>
+                                <div class="col-9 col-sm-5" style="position: relative; margin-left: 745px; top: -30px;"> ${{ order.amount }}</div> 
+                        
+                            </div>
+
+                        </div>
+    
+                        <hr />
+    
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</html>
+

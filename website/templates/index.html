@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% set active_page = "menu0" %}
+
+{% block title%}Home{% endblock %}
+
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/indexStyle.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<script type=text/javascript src="{{ url_for('static', filename='scripts/shopfilter.js') }}"></script>
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4 fw-normal">BookStore</h1>
+    </div>
+</div>
+
+
+</div>
+
+<div class="button-container">
+
+  <button class="btn btn-dark" onclick="shopFilter('all')">All Books</button>
+  <button class="btn btn-secondary" onclick="shopFilter('Action')">Action</button>
+  <button class="btn btn-secondary" onclick="shopFilter('Adventure')">Adventure</button>
+  <button class="btn btn-secondary" onclick="shopFilter('Comics')">Comics</button>
+  <button class="btn btn-secondary" onclick="shopFilter('Fantasy')">Fantasy</button>
+  <button class="btn btn-secondary" onclick="shopFilter('Fiction')">Fiction</button>
+  <button class="btn btn-secondary" onclick="shopFilter('Non-Fiction')">Non-Fiction</button>
+  <hr style="width:50%;">
+</div>
+
+
+
+<div class="scontainer">
+
+{% for book,genre in combine %}
+
+
+        <div class="card content-section h-100 {{ genre.genre_name }}">
+          
+          
+          <a class="mr-2" href="{{ url_for('views.book_info', book_id=book.id) }}">
+          <img class="card-img-top h-60" src="{{ url_for('static', filename='Book_Image/' + book.image_file) }}">
+          <div class="card-body">
+              
+              <h5>{{ book.title }}</h5>
+              <hr style="width:80%">
+              <small class="text-muted">{{ book.author }}</small>
+            
+            <h6>${{ book.price }}</h6>
+          </div>
+        </a>
+        </div>
+
+
+
+{% endfor %}
+</div>
+
+
+{% include 'footer.html' %}
+
+
+
+{% endblock %}

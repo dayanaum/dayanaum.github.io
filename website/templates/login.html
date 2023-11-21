@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% set active_page = "menu2" %}
+{% block title%}Login{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/signupStyle.css') }}">
+<body>
+    <div class="signup-form">
+        <form action="" method="post">
+            <h2>Login</h2>
+            <p class="hint-text">Login to your account.</p>
+
+            <div class="form-group">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Email" required="required">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" name="password" id="password" placeholder="Password" required="required">
+            </div>
+            
+            <div class="form-group">
+                <button type="submit" class="btn btn-secondary btn-lg btn-block">Login</button>
+            </div>
+        </form>
+        
+    </div>
+
+</body>
+
+
+
+{% endblock %}

@@ -1,0 +1,46 @@
+footer{
+    
+    background-color:#4b4c4d;
+    color:#ffffff;
+    position:relative;
+    
+    left: 0;
+    bottom: 0;
+    width: 100%;
+  
+    
+    text-align: center;
+    padding-top: 1%;
+
+}
+footer a{
+    color:#ffffff; 
+}
+
+.social-icon {
+    font-size: 37.5px;
+}
+
+.social-twitter{
+    transition: color 0.2s;
+}
+
+.social-twitter:hover {
+    color: rgb(41, 204, 245);
+}
+
+.social-insta{
+    transition: color 0.2s;
+}
+
+.social-insta:hover {
+    color: rgb(238, 148, 106);
+}
+
+.social-fb{
+    transition: color 0.2s;
+}
+
+.social-fb:hover {
+    color: rgb(166, 117, 211);
+}

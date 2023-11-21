@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block title%}{{ book.title }}{% endblock %}
+{% block content %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/bookinfo.css') }}">
+
+
+<div class="bcontainer">
+  <div class="bimg">
+    <img class="book-img  h-70" src="{{ url_for('static', filename='Book_Image/' + book.image_file) }}">
+  </div>
+
+  <div class="binfo">
+
+    <div class="card" style="width: 25rem; height:25rem;">
+
+      <div class="card-body">
+        <h1 class="card-title">{{ book.title }}</h1>
+        <hr style="width: 60%;">
+        <h3><small class="text-muted">{{ book.author }}</small></h3>
+        <h5 class="card-text">${{ book.price }}</h5>
+
+        <h6 class="card-text">Publication: {{ book.publication }}</h6>
+        {% if book.piece==0: %}
+        <h2 class="card-title">Out Of Stock</h2>
+        {% else: %}
+        <div>
+        <a class="btn btn-success btn-lg mt-1 mb-15" href="{{ url_for('views.addcart',book_id=book.id) }}">Add to Cart</a>
+        </div>
+        {% endif %}
+
+
+
+      </div>
+
+
+    </div>
+
+  </div>
+</div>
+
+<hr class = "divide" >
+<div class="icontainer">
+  <div class="card about">
+    <div class="card-body">
+      <h4 class="card-title">About Book:</h4>
+      
+      <p class="card-text">{{ info }}</p>
+    </div>
+  </div>
+
+
+</div>
+
+<div class="ccontainer">
+  <div class="card about">
+
+    <div class="card-body">
+      <h4 class="card-title">Comments</h4>
+
+
+      <div class="comment-container">
+        <form method="POST">
+          <textarea name="comment" id="comment" class = "form-control" rows="5" style="resize: none;"></textarea>
+          <button type="submit" class = "btn btn-secondary commentbtn">Comment</button>
+          
+        
+        
+        </form>
+        <br>
+        <ul class="list-group list-group-flush commentsect" id="comments">
+        
+          {% for comment,user in commentList %}
+          
+          <li class="list-group-item"><h6>{{ user.first_name }} {{ user.last_name }} - {{ comment.date.strftime("%b-%d-%Y") }} </h6> {{ comment.data }}</li>
+          {% endfor %}
+          
+        </ul> 
+
+
+
+      </div>
+
+
+
+    </div>
+
+  </div>
+
+
+</div>
+
+
+
+
+
+
+
+{% endblock content %}

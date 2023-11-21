@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title%}Cart{% endblock %}
+{% set active_page = "menu1" %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/cartStyle.css') }}">
+	{% if total==0: %}
+		
+		<div class="empty-cart">
+			<h3>Your Cart is Empty</h3>
+			<img class="cartimg w-50 h-50" src="{{ url_for('static', filename='images/emptycart.png') }}">	
+			
+		</div>
+			
+				
+			
+		
+	{% else: %}	
+
+
+	<div class="cartContainer">
+		{% for cart in carts %}
+		
+			<div class="media content-section cartitem">
+				
+				<img src="{{ url_for('static', filename='Book_Image/' + cart.cartbook.image_file) }} " style='height: 10%; width: 10%; object-fit: contain'>
+					<div class="media-body">
+						<div class="article-metadata">
+							<div class="deletebtn">
+								
+								<form action="{{ url_for('views.delete_cart', cart_id=cart.id) }}" method="POST">
+									<input class="btn btn-danger" type="submit" value="Delete">
+								</form>
+							</div>
+							<h3 class="book-title">{{ cart.cartbook.title }}</h3>
+							<small class="text-muted">{{ cart.cartbook.author }}</small>
+						</div>
+					<p class="article-content">${{ cart.cartbook.price }}</p>
+					</div>
+			</div>
+			<hr style="width:100%">
+		{% endfor %}
+	</div>
+	<div class="totalContainer">
+		<hr style="width:40%">
+		<h3 class="totaldisplay">Total: {{ "$%.2f"|format(total) }}</h3> 
+		
+		<div class="checkout">
+			<a class="btn btn-success btn-sm mt-1 mb-1" href="{{ url_for('views.checkout') }}">Checkout</a>
+		</div>
+	</div>
+
+
+	{% endif %}
+{% endblock content %}

@@ -1,0 +1,40 @@
+.content-section h4{
+    font-size: 15px;
+}
+
+.book-title{
+    font-size: 20px !important;
+    text-align: center !important;
+}
+
+.content-section{
+    width: 800px;
+    margin: 0 auto;
+    padding: 1% 0;
+}
+.content-section h2{
+    color: #636363;
+    margin: 0 0 15px;
+    position: relative;
+    text-align: center;
+}
+
+.content-section h2:before, .content-section h2:after{
+    content: "";
+    height: 2px;
+    width: 35%;
+    background: #d4d4d4;
+    position: absolute;
+    top: 55%;
+    z-index: 2;
+}	
+.content-section h2:before{
+    left: 0;
+}
+.content-section h2:after{
+    right: 0;
+}
+
+
+
+
